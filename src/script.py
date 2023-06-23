@@ -42,7 +42,7 @@ score_parser.add_argument("--output", help="Path to evaluation score output CSV 
 args = parser.parse_args()
 
 
-def predict_outcomes(df):
+def predict_outcomes(df): 
     """Process the input data and write the predictions."""
 
     # The predict_outcomes function accepts a Pandas DataFrame as an argument
