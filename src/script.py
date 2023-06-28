@@ -54,11 +54,19 @@ def predict_outcomes(df):
     # individual did not have a child during 2020-2022, while '1' implies that
     # they did.
 
-    # Keep 
-    keepcols = ['burgstat2019', 'leeftijd2019', 'woonvorm2019', 'oplmet2019', 'aantalki2019']
+    dict_kids = {'None': 0, 'One child': 1, 'Two children': 2, 'Three children': 3, 'Four children': 4,  'Five children': 5, 'Six children': 6} 
+    keepcols = ['gebjaar', 'geslacht', 'leeftijd2019', 'positie2019',
+            'aantalhh2019','partner2019', 'sted2019', 'belbezig2019', 
+            'nettohh_f2019', 'oplmet2019', 'herkomstgroep2019',
+            'burgstat2019', 'woonvorm2019', 'aantalki2019', 'cf19l128',
+           'cf19l131','cf19l132','cf19l133','cf19l134','woning2019', 
+            'cf19l456', 'cw19l522', 'cr19l143', 'cr19l090',
+            'cf19l483', 'cf19l484', 'cf19l485', 'cf19l486', 'cf19l487', 'cf19l488',
+           'cf19l130', 'cf19l457', 'cf19l458', 'cf19l459']
     nomem_encr = df["nomem_encr"]
     
     df = df.loc[:, keepcols]
+    df["aantalki2019"] = df["aantalki2019"].map(dict_kids)
     
     # Load your trained model from the models directory
     model_path = os.path.join(os.path.dirname(__file__), "..", "models", "model.joblib")
